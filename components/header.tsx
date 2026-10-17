@@ -1,8 +1,7 @@
 import Link from 'next/link';
 import { Suspense } from 'react';
-import { Bell, Search } from 'lucide-react';
+import { Search } from 'lucide-react';
 import { getCurrentUser } from '@/lib/server/session';
-import { getNotificationsFor } from '@/lib/server/queries';
 import { USERS } from '@/lib/server/store';
 import { switchUser } from '@/app/actions/session';
 import { NavLinks } from './nav-links';
@@ -43,23 +42,8 @@ export function Header() {
 
 async function UserArea() {
   const user = await getCurrentUser();
-  const unread = user ? (await getNotificationsFor(user.id)).filter((n) => !n.read).length : 0;
   return (
     <div className="ml-auto flex items-center gap-2 sm:ml-0">
-      {user && (
-        <Link
-          href="/inbox"
-          className="relative rounded-md p-1.5 text-white/70 transition hover:bg-white/10 hover:text-white"
-          aria-label={`Inbox, ${unread} unread`}
-        >
-          <Bell className="h-[18px] w-[18px]" aria-hidden />
-          {unread > 0 && (
-            <span className="absolute -right-0.5 -top-0.5 min-w-4 rounded-full bg-brass px-1 text-center text-[10px] font-bold leading-4 text-abyss">
-              {unread}
-            </span>
-          )}
-        </Link>
-      )}
       <form action={switchUser}>
         <UserSelect users={USERS.map((u) => ({ id: u.id, name: u.name }))} current={user?.id ?? ''} />
       </form>

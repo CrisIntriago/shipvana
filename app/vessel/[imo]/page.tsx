@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 import { getEventsForVessel, getPolicies, getScrapPrices, getVessel } from '@/lib/server/queries';
@@ -16,7 +15,7 @@ import {
 import { ScrapCard } from '@/components/vessel/scrap-card';
 import { PageHeader, Panel, SectionLabel } from '@/components/ui';
 import { photoForImo } from '@/lib/ship-photos';
-import { ExternalLink, FileText, Info, Ruler, Scale } from 'lucide-react';
+import { ExternalLink, Info, Ruler, Scale } from 'lucide-react';
 
 export default function VesselPage(props: PageProps<'/vessel/[imo]'>) {
   return (
@@ -160,11 +159,7 @@ async function VesselDetail({ params }: { params: PageProps<'/vessel/[imo]'>['pa
             <SectionLabel icon={<ExternalLink className="h-3.5 w-3.5" aria-hidden />} className="mb-4">Events and sources</SectionLabel>
             {events.length === 0 ? (
               <p className="text-sm text-muted">
-                No events yet. Events that name this ship without an IMO sit in the{' '}
-                <Link href="/events" className="text-harbor hover:underline">
-                  Needs IMO list
-                </Link>
-                .
+                No events yet. Events that name this ship without an IMO sit in the Needs IMO list until one is attached.
               </p>
             ) : (
               <div className="space-y-3">
@@ -175,17 +170,6 @@ async function VesselDetail({ params }: { params: PageProps<'/vessel/[imo]'>['pa
             )}
           </Panel>
 
-          {/* Advisor memo panel (placeholder until the Advisor workstream lands) */}
-          <section id="memo" className="rounded-xl border border-dashed border-brass/50 bg-white/60 p-5">
-            <SectionLabel icon={<FileText className="h-3.5 w-3.5 text-brass" aria-hidden />}>Decision memo</SectionLabel>
-            <p className="mt-2 text-sm text-muted">
-              A plain-language memo built from the four values above. Sign in and generate it on the{' '}
-              <Link href={`/advisor?imo=${vessel.imo}`} className="text-harbor hover:underline">
-                Advisor
-              </Link>
-              .
-            </p>
-          </section>
         </div>
       </div>
       </div>

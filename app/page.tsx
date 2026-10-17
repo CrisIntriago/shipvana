@@ -74,12 +74,10 @@ const LEGEND: { kind: LabelKind; text: string }[] = [
 ];
 
 const LOOP = [
-  { step: 'Search a ship by IMO', href: '/fleet', cta: 'Inventory' },
+  { step: 'Open the inventory of ships calling at Miami', href: '/fleet', cta: 'Inventory' },
+  { step: 'Search a ship by IMO or name', href: '/fleet', cta: 'Inventory' },
   { step: 'Read the four labelled values', href: '/vessel/9128532', cta: 'Norwegian Sky' },
-  { step: 'Paste a sale sentence and review the extracted event', href: '/events', cta: 'Event Feed' },
-  { step: 'Save it and watch your alert fire', href: '/alerts', cta: 'My alerts' },
-  { step: 'Read the decision memo', href: '/advisor', cta: 'Advisor' },
-  { step: 'Run a buy, lease or sell scenario', href: '/scenarios', cta: 'Scenarios' },
+  { step: 'Compare every ship side by side', href: '/fleet?view=table', cta: 'Inventory table' },
 ];
 
 export default function Home() {
@@ -112,8 +110,8 @@ export default function Home() {
               world.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
-              <Link href="/alerts" className={buttonClass('brass', 'px-5 py-3 text-base')}>
-                Create an account
+              <Link href="/fleet" className={buttonClass('brass', 'px-5 py-3 text-base')}>
+                Explore the inventory
               </Link>
               <Link
                 href="/fleet"
@@ -153,7 +151,7 @@ export default function Home() {
             {EXIT_PATHS.map((p) => (
               <Link
                 key={p}
-                href="/scenarios"
+                href="/fleet"
                 className="rounded-full border border-line bg-white px-3 py-1 text-sm text-ink/80 transition hover:border-brass hover:text-brass"
               >
                 {p}
@@ -275,6 +273,22 @@ export default function Home() {
               ))}
             </ol>
           </Panel>
+        </section>
+
+        {/* Closing CTA: everything leads to the inventory */}
+        <section className="chart-grid relative overflow-hidden rounded-2xl bg-abyss px-6 py-12 text-white sm:px-12">
+          <div className="flex flex-wrap items-center justify-between gap-6">
+            <div className="max-w-xl">
+              <Eyebrow>
+                <Ship className="h-3.5 w-3.5" aria-hidden /> Inventory
+              </Eyebrow>
+              <h2 className="mt-3 font-display text-4xl leading-tight tracking-tight">Pick a ship. See what it&apos;s worth.</h2>
+              <p className="mt-2 text-white/70">Every cruise ship calling at PortMiami, with four labelled values and the deals reported for it.</p>
+            </div>
+            <Link href="/fleet" className={buttonClass('brass', 'px-6 py-3 text-base')}>
+              Open the inventory <ArrowRight className="h-4 w-4" aria-hidden />
+            </Link>
+          </div>
         </section>
       </div>
     </div>
