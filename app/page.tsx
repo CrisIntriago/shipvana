@@ -1,28 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, Anchor, BadgeCheck, Coins, Globe, Landmark, Recycle, Search, Ship, Sparkles } from 'lucide-react';
-import { DECISION_SUPPORT, Label, PublicBadge, fmtMusd, type LabelKind } from '@/components/labels';
+import { ArrowRight, Anchor, BadgeCheck, Coins, Globe, Landmark, Recycle, Ship, Sparkles } from 'lucide-react';
+import { DECISION_SUPPORT, Label, type LabelKind } from '@/components/labels';
 import { Eyebrow, Panel, PhotoCredit, SectionTitle, ShipImage, buttonClass } from '@/components/ui';
 import { HERO_PHOTO, PORT_PHOTO, photoForImo } from '@/lib/ship-photos';
-import { policyBookValueMusd, scrapValueMusd } from '@/lib/core/valuation';
-
-// Static sample (the page reads no data). Figures are the Norwegian Sky row in data/ships_cruise_miami.csv
-// and the Bangladesh row in data/scrap_prices.csv, run through the same valuation code as the vessel page.
-const SAMPLE = {
-  name: 'Norwegian Sky',
-  imo: '9128532',
-  brand: 'Norwegian Cruise Line',
-  ticker: 'NYSE: NCLH',
-  yearBuilt: 1999,
-  age: 27,
-  grossTonnage: 77104,
-  originalCostMusd: 357,
-  estLdtTonnes: 26986,
-  bangladeshUsdPerLdt: 500,
-  deal: 'CHARTER to Cordelia Cruises',
-};
-const sampleScrap = scrapValueMusd({ ldtTonnes: SAMPLE.estLdtTonnes, usdPerLdtDry: SAMPLE.bangladeshUsdPerLdt });
-const sampleBook = policyBookValueMusd({ originalCostMusd: SAMPLE.originalCostMusd, age: SAMPLE.age });
 
 // Ships from data/ships_cruise_miami.csv that have an open-licence photo.
 const FEATURED = [
@@ -118,7 +99,7 @@ export default function Home() {
         <div className="absolute inset-0 -z-10 bg-gradient-to-r from-abyss/95 via-abyss/60 to-transparent" />
         <div className="absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-t from-abyss/80 to-transparent" />
 
-        <div className="mx-auto grid max-w-7xl gap-12 px-4 pb-20 pt-16 md:pt-24 lg:grid-cols-[1.15fr_1fr] lg:items-end">
+        <div className="mx-auto grid max-w-7xl gap-12 px-4 pb-20 pt-16 md:pt-24 lg:grid-cols-[1.15fr_1fr] lg:items-center">
           <div>
             <Eyebrow>
               <Anchor className="h-3.5 w-3.5" aria-hidden /> Cruise ships calling at PortMiami
@@ -127,35 +108,24 @@ export default function Home() {
               What is a used cruise ship <em className="text-brass-light">worth?</em>
             </h1>
             <p className="mt-5 max-w-xl text-lg text-white/85 [text-shadow:0_1px_3px_rgb(0_0_0/0.5)]">
-              An AI platform that turns aging cruise ships into financed second-life deals — for buyers anywhere in the
+              A platform that turns aging cruise ships into financed second-life deals — for buyers anywhere in the
               world.
             </p>
-            <form action="/fleet" className="mt-8 flex max-w-xl gap-2 rounded-xl border border-white/15 bg-white/10 p-1.5 backdrop-blur-md">
-              <label htmlFor="hero-q" className="sr-only">
-                IMO number or ship name
-              </label>
-              <div className="relative flex-1">
-                <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/50" aria-hidden />
-                <input
-                  id="hero-q"
-                  name="q"
-                  inputMode="search"
-                  placeholder="IMO number or ship name, e.g. 9128532"
-                  className="w-full rounded-lg bg-transparent py-2.5 pl-10 pr-3 text-base text-white placeholder:text-white/45 focus:outline-none"
-                />
-              </div>
-              <button type="submit" className={buttonClass('brass', 'px-5')}>
-                Search
-              </button>
-            </form>
+            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
+              <Link href="/alerts" className={buttonClass('brass', 'px-5 py-3 text-base')}>
+                Create an account
+              </Link>
+              <Link
+                href="/fleet"
+                className="group inline-flex items-center gap-2 text-base font-medium text-white [text-shadow:0_1px_3px_rgb(0_0_0/0.5)] hover:text-brass-light"
+              >
+                Find a vessel by IMO
+                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden />
+              </Link>
+            </div>
             <p className="mt-3 text-xs text-white/70 [text-shadow:0_1px_2px_rgb(0_0_0/0.6)]">{DECISION_SUPPORT}</p>
           </div>
-          <div>
-            <p className="mb-3 inline-flex items-center gap-2 rounded-md bg-abyss/80 px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-white shadow-lg backdrop-blur-sm">
-              <span className="h-1.5 w-1.5 rounded-full bg-brass" aria-hidden /> Sample lookup
-            </p>
-            <SampleLookup />
-          </div>
+          <HeroShip />
         </div>
         <PhotoCredit photo={HERO_PHOTO} className="absolute bottom-3 right-3" />
       </section>
@@ -311,54 +281,42 @@ export default function Home() {
   );
 }
 
-function SampleLookup() {
-  return (
-    <div className="overflow-hidden rounded-xl border border-white/15 bg-white text-ink shadow-2xl shadow-black/40">
-      <div className="flex items-start justify-between gap-3 border-b border-line px-4 py-3">
-        <div>
-          <p className="font-mono text-xs text-muted">IMO {SAMPLE.imo}</p>
-          <p className="font-display text-2xl leading-tight">{SAMPLE.name}</p>
-          <p className="text-xs text-muted">
-            {SAMPLE.brand} · built {SAMPLE.yearBuilt} · {SAMPLE.grossTonnage.toLocaleString('en-US')} GT
-          </p>
-        </div>
-        <PublicBadge status="PUBLIC" ticker={SAMPLE.ticker} />
-      </div>
-      <ul className="divide-y divide-line text-sm">
-        <SampleRow title="Scrap value" labels={<><Label kind="Estimate" /><Label kind="Proxy">Proxy rate</Label></>}>
-          {fmtMusd(sampleScrap, { estimate: true })}
-        </SampleRow>
-        <SampleRow title="Policy book value" labels={<><Label kind="Estimate" /><Label kind="Carnival policy applied" /></>}>
-          {sampleBook != null ? fmtMusd(sampleBook, { estimate: true }) : <span className="text-muted">Original cost not available</span>}
-        </SampleRow>
-        <SampleRow title="Reported deals" labels={<Label kind="Reported" />}>
-          <span className="block text-right font-sans text-sm">
-            {SAMPLE.deal}
-            <span className="block text-xs font-medium text-muted">Price undisclosed</span>
-          </span>
-        </SampleRow>
-        <SampleRow title="Original cost" labels={<Label kind="Sourced" />}>
-          {fmtMusd(SAMPLE.originalCostMusd)}
-        </SampleRow>
-      </ul>
-      <Link
-        href={`/vessel/${SAMPLE.imo}`}
-        className="flex items-center justify-between border-t border-line bg-paper px-4 py-3 text-sm font-semibold text-harbor transition hover:bg-harbor-tint"
-      >
-        Open the full vessel page <ArrowRight className="h-4 w-4" aria-hidden />
-      </Link>
-    </div>
-  );
-}
+// Symphony of the Seas, a PortMiami regular (data/ships_cruise_miami.csv), in a framed photo card.
+const HERO_SHIP = { imo: '9744001', name: 'Symphony of the Seas', brand: 'Royal Caribbean International' };
 
-function SampleRow({ title, labels, children }: { title: string; labels: React.ReactNode; children: React.ReactNode }) {
+function HeroShip() {
+  const photo = photoForImo(HERO_SHIP.imo);
+  if (!photo) return null;
   return (
-    <li className="flex items-center justify-between gap-3 px-4 py-2.5">
-      <div>
-        <p className="text-ink/80">{title}</p>
-        <div className="mt-0.5 flex flex-wrap gap-1">{labels}</div>
+    <div className="relative hidden lg:block">
+      {/* Offset brass frame and glow behind the photo */}
+      <div className="absolute -inset-6 -z-10 rounded-[2rem] bg-brass/20 blur-3xl" aria-hidden />
+      <div className="absolute -right-4 -top-4 bottom-4 left-4 rounded-2xl border border-brass/50" aria-hidden />
+
+      <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-2xl shadow-black/50 ring-1 ring-white/15">
+        <Image
+          src={photo.file}
+          alt={`${HERO_SHIP.name} berthed at Nassau`}
+          fill
+          preload
+          sizes="(min-width: 1024px) 40vw, 0px"
+          className="object-cover"
+        />
+        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-abyss/90 via-abyss/40 to-transparent" />
+        <PhotoCredit photo={photo} className="absolute right-3 top-3" />
+
+        <Link
+          href={`/vessel/${HERO_SHIP.imo}`}
+          className="group absolute inset-x-4 bottom-4 flex items-center justify-between gap-3 rounded-xl border border-white/15 bg-abyss/60 px-4 py-3 backdrop-blur-md transition hover:border-brass/60"
+        >
+          <span>
+            <span className="block font-mono text-[11px] uppercase tracking-[0.16em] text-brass-light">IMO {HERO_SHIP.imo}</span>
+            <span className="block font-display text-2xl leading-tight text-white">{HERO_SHIP.name}</span>
+            <span className="block text-xs text-white/70">{HERO_SHIP.brand} · calls at PortMiami</span>
+          </span>
+          <ArrowRight className="h-5 w-5 shrink-0 text-white/80 transition group-hover:translate-x-0.5 group-hover:text-brass-light" aria-hidden />
+        </Link>
       </div>
-      <div className="font-display text-2xl tabular-nums text-ink">{children}</div>
-    </li>
+    </div>
   );
 }

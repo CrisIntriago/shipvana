@@ -28,7 +28,7 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   title: "SHIPVANA · Second lives for aging cruise ships",
   description:
-    "An AI platform that turns aging cruise ships into financed second-life deals, for buyers anywhere in the world.",
+    "A platform that turns aging cruise ships into financed second-life deals, for buyers anywhere in the world.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
