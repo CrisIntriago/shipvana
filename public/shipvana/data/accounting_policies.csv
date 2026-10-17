@@ -1,0 +1,4 @@
+company,ticker,useful_life_years,residual_pct_of_cost,basis,source,source_url,status,management_view_service_life_years,management_view_source
+Carnival Corporation,NYSE: CCL,30,15,,"FY2023 10-K (year ended Nov 30, 2023). Carnival 10-K, ship depreciation note. Re-check the FY2025 note before a slide.",,SOURCED - FY2023 filing,,
+Norwegian Cruise Line Holdings,NYSE: NCLH,,,,,,NOT VERIFIED,35,
+Royal Caribbean Group,NYSE: RCL,,,,,,NOT VERIFIED,,

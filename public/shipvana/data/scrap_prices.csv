@@ -1,0 +1,5 @@
+region,usd_per_ldt_dry,usd_per_ldt_tanker,usd_per_ldt_container,as_of,source,note
+Bangladesh,500,,,2026-09-01,"GMS, early Sept 2026 (gathered earlier in this project; re-verify). Dry-cargo rate used as a proxy for cruise ships",Proxy for cruise ships
+Pakistan,520,,,2026-09-01,"GMS, early Sept 2026 (gathered earlier in this project; re-verify). Dry-cargo rate used as a proxy for cruise ships",Proxy for cruise ships
+India,465,,,2026-09-01,"GMS, early Sept 2026 (gathered earlier in this project; re-verify). Dry-cargo rate used as a proxy for cruise ships",Proxy for cruise ships
+Turkiye,263,,,2026-09-01,"GMS, early Sept 2026 (gathered earlier in this project; re-verify). Dry-cargo rate used as a proxy for cruise ships",Proxy for cruise ships

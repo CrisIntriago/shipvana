@@ -1,0 +1,8 @@
+{
+  "name": "second-hull",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/all.test.mjs"
+  }
+}
