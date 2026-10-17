@@ -89,8 +89,8 @@ export default function Home() {
           sizes="100vw"
           className="-z-20 object-cover object-[50%_35%]"
         />
-        <div className="absolute inset-0 -z-10 bg-black/35" />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-abyss via-abyss/85 to-abyss/20" />
+        <div className="absolute inset-0 -z-10 bg-black/30" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-abyss/95 via-abyss/60 to-transparent" />
         <div className="absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-t from-abyss/80 to-transparent" />
 
         <div className="mx-auto grid max-w-7xl gap-12 px-4 pb-20 pt-16 md:pt-24 lg:grid-cols-[1.15fr_1fr] lg:items-end">

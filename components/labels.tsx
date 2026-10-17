@@ -37,12 +37,12 @@ export function OrBlank({ value, blank = 'Not available' }: { value: React.React
 export function PublicBadge({ status, ticker }: { status: 'PUBLIC' | 'PRIVATE'; ticker: string | null }) {
   if (status === 'PUBLIC')
     return (
-      <span className="inline-flex items-center gap-1 whitespace-nowrap rounded-md bg-harbor px-2 py-0.5 text-xs font-semibold text-white ring-1 ring-inset ring-white/15" title="Files with the SEC">
+      <span className="inline-flex items-center gap-1 whitespace-nowrap rounded-md bg-harbor font-sans tracking-normal px-2 py-0.5 text-xs font-semibold text-white ring-1 ring-inset ring-white/15" title="Files with the SEC">
         PUBLIC{ticker ? ` · ${ticker}` : ''}
       </span>
     );
   return (
-    <span className="inline-flex items-center whitespace-nowrap rounded-md bg-stone-600 px-2 py-0.5 text-xs font-semibold text-white ring-1 ring-inset ring-white/15" title="No public financial filings expected">
+    <span className="inline-flex items-center whitespace-nowrap rounded-md bg-stone-600 font-sans tracking-normal px-2 py-0.5 text-xs font-semibold text-white ring-1 ring-inset ring-white/15" title="No public financial filings expected">
       PRIVATE
     </span>
   );

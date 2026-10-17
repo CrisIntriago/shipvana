@@ -244,10 +244,8 @@ function Fact({ k, v }: { k: string; v: string | null }) {
 function Card({ title, labels, children }: { title: string; labels: React.ReactNode; children: React.ReactNode }) {
   return (
     <Panel className="flex flex-col p-5">
-      <div className="flex items-start justify-between gap-2">
-        <h3 className="text-sm font-semibold text-ink">{title}</h3>
-        <div className="flex flex-wrap justify-end gap-1">{labels}</div>
-      </div>
+      <h3 className="text-sm font-semibold text-ink">{title}</h3>
+      <div className="mt-1.5 flex flex-wrap gap-1">{labels}</div>
       {children}
     </Panel>
   );

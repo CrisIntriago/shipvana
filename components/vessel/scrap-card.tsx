@@ -18,9 +18,9 @@ export function ScrapCard({ estLdt, ldtBasis, regions }: { estLdt: number | null
 
   return (
     <div className="flex flex-col rounded-xl border border-line bg-white p-5 shadow-[0_1px_2px_rgba(16,27,40,0.04)]">
-      <div className="flex items-start justify-between gap-2">
-        <h3 className="text-sm font-semibold text-ink">Scrap value</h3>
-        <div className="flex flex-wrap justify-end gap-1">
+      <h3 className="text-sm font-semibold text-ink">Scrap value</h3>
+      <div>
+        <div className="mt-1.5 flex flex-wrap gap-1">
           {userLdt ? <Label kind="Your input">LDT: Your input</Label> : <Label kind="Estimate" />}
           <Label kind="Proxy">Rate: Proxy</Label>
         </div>
@@ -29,9 +29,9 @@ export function ScrapCard({ estLdt, ldtBasis, regions }: { estLdt: number | null
         {value !== null ? fmtMusd(value, { estimate: !userLdt }) : <span className="font-sans text-base font-semibold text-muted/70">LDT not available</span>}
       </p>
       <div className="mt-3 space-y-2 text-xs text-muted">
-        <label className="flex items-center justify-between gap-2">
+        <label className="flex flex-col gap-1">
           <span>Region</span>
-          <select value={region} onChange={(e) => setRegion(e.target.value)} className="max-w-40 rounded-md border border-line bg-white px-1.5 py-1 text-ink focus:border-harbor focus:outline-none">
+          <select value={region} onChange={(e) => setRegion(e.target.value)} className="w-full rounded-md border border-line bg-white px-1.5 py-1 text-ink focus:border-harbor focus:outline-none">
             {usable.map((r) => (
               <option key={r.region} value={r.region}>
                 {r.region} · ${r.usd_per_ldt_dry}/LDT
@@ -39,14 +39,14 @@ export function ScrapCard({ estLdt, ldtBasis, regions }: { estLdt: number | null
             ))}
           </select>
         </label>
-        <label className="flex items-center justify-between gap-2">
+        <label className="flex flex-col gap-1">
           <span>Your LDT (tonnes)</span>
           <input
             inputMode="numeric"
             value={ldtInput}
             onChange={(e) => setLdtInput(e.target.value.replace(/[^\d.]/g, ''))}
             placeholder={estLdt !== null ? `~${fmtNum(estLdt, 0)}` : 'enter LDT'}
-            className="w-28 rounded-md border border-line bg-white px-1.5 py-1 text-right text-ink focus:border-harbor focus:outline-none"
+            className="w-full rounded-md border border-line bg-white px-1.5 py-1 text-right text-ink focus:border-harbor focus:outline-none"
           />
         </label>
         <p className="leading-relaxed">
