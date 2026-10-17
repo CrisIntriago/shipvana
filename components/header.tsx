@@ -19,7 +19,7 @@ export function Header() {
     <header className="sticky top-0 z-20 border-b border-slate-200 bg-white/95 backdrop-blur">
       <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-x-6 gap-y-2 px-4 py-3">
         <Link href="/" className="flex items-baseline gap-2">
-          <span className="text-lg font-bold tracking-tight text-slate-900">Second Hull</span>
+          <span className="text-lg font-bold tracking-tight text-slate-900">SHIPVANA</span>
           <span className="hidden text-xs text-slate-500 sm:inline">cruise ship valuation · PortMiami</span>
         </Link>
         <nav className="flex flex-wrap gap-1 text-sm">

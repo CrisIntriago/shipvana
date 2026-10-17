@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Second Hull · Cruise ship valuation",
+  title: "SHIPVANA · Cruise ship valuation",
   description:
     "Transparent valuation and tracking for cruise ships that call at PortMiami. Every number labelled: sourced, estimate or proxy.",
 };
@@ -29,7 +29,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Header />
         <main className="flex-1">{children}</main>
         <footer className="border-t border-slate-200 bg-white py-4 text-center text-xs text-slate-500">
-          Second Hull · Decision support, not financial advice. Market inputs are user-entered or from dated scrap prices.
+          SHIPVANA · Decision support, not financial advice. Market inputs are user-entered or from dated scrap prices.
         </footer>
       </body>
     </html>

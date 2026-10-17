@@ -188,10 +188,10 @@ function load(): Store {
 }
 
 // Survive dev hot reloads.
-const g = globalThis as unknown as { __secondHullStore?: Store };
+const g = globalThis as unknown as { __shipvanaStore?: Store };
 export function store(): Store {
-  if (!g.__secondHullStore) g.__secondHullStore = load();
-  return g.__secondHullStore;
+  if (!g.__shipvanaStore) g.__shipvanaStore = load();
+  return g.__shipvanaStore;
 }
 
 export function persist() {
@@ -213,7 +213,7 @@ export function persist() {
 
 export function resetStore() {
   const vessels = loadVessels();
-  g.__secondHullStore = {
+  g.__shipvanaStore = {
     ...freshMutable(vessels),
     vessels,
     scrapPrices: loadScrapPrices(),

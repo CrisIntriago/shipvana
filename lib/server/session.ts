@@ -4,7 +4,7 @@ import type { Role, User } from '@/lib/core/types';
 import { USERS } from './store';
 
 // Demo auth: no passwords, no email. A cookie holds which demo user is signed in.
-export const SESSION_COOKIE = 'sh_user';
+export const SESSION_COOKIE = 'sv_user';
 
 export async function getCurrentUser(): Promise<User | null> {
   const id = (await cookies()).get(SESSION_COOKIE)?.value;

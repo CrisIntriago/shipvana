@@ -1,10 +1,12 @@
-# Second Hull: build spec for Claude Code
+# SHIPVANA: build spec for Claude Code
+
+> Formerly named "Second Hull". The product is now SHIPVANA everywhere.
 
 Read this file first, then `data/`, then `lib/` and `tests/`. Run `npm test` (or `node --test tests/all.test.mjs`) before and after every change. The tests must stay green.
 
 ## 1. What this is
 
-Second Hull is a transparent valuation and tracking web app for **cruise ships that call at PortMiami**. Most of these ships belong to public companies (Carnival, Royal Caribbean, Norwegian) that disclose fleet changes but often not sale prices. A buyer or analyst looks a ship up by its **IMO number** and sees four clearly labelled values plus a plain-language decision memo. Contributors can paste text from a filing or news article, and the app extracts the sale/charter/exit event and attaches it to the ship. Users can save alerts and get an in-app notification when a matching event is added.
+SHIPVANA is a transparent valuation and tracking web app for **cruise ships that call at PortMiami**. Most of these ships belong to public companies (Carnival, Royal Caribbean, Norwegian) that disclose fleet changes but often not sale prices. A buyer or analyst looks a ship up by its **IMO number** and sees four clearly labelled values plus a plain-language decision memo. Contributors can paste text from a filing or news article, and the app extracts the sale/charter/exit event and attaches it to the ship. Users can save alerts and get an in-app notification when a matching event is added.
 
 Context: built for the eMerge America hackathon in Miami (Enterprise AI track, Archie award), 2026-10-17. It started as a broker-free vessel marketplace idea (alerts, valuation, due diligence, matched financing). This build is the narrower cruise-ship slice. It was first attempted in Archie and moved to Claude Code, so the Archie schema is not authoritative: **the CSVs in `data/` and this spec are.** Scope is cruise ships only. Ignore cargo, tankers and bulk carriers.
 
