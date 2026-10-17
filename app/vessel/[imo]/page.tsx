@@ -14,10 +14,13 @@ import {
   fmtNum,
 } from '@/components/labels';
 import { ScrapCard } from '@/components/vessel/scrap-card';
+import { PageHeader, Panel, SectionLabel } from '@/components/ui';
+import { photoForImo } from '@/lib/ship-photos';
+import { ExternalLink, FileText, Info, Ruler, Scale } from 'lucide-react';
 
 export default function VesselPage(props: PageProps<'/vessel/[imo]'>) {
   return (
-    <Suspense fallback={<div className="mx-auto max-w-7xl px-4 py-8 text-sm text-slate-500">Loading ship…</div>}>
+    <Suspense fallback={<div className="mx-auto max-w-7xl px-4 py-8 text-sm text-muted">Loading ship…</div>}>
       <VesselDetail params={props.params} />
     </Suspense>
   );
@@ -44,23 +47,33 @@ async function VesselDetail({ params }: { params: PageProps<'/vessel/[imo]'>['pa
   });
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8">
-      <Link href="/fleet" className="text-sm text-slate-500 hover:text-slate-800">
-        ← Fleet
-      </Link>
-      <div className="mt-2 flex flex-wrap items-center gap-3">
-        <h1 className="text-3xl font-bold tracking-tight">{vessel.name}</h1>
-        <PublicBadge status={vessel.public_status} ticker={vessel.ticker} />
-      </div>
-      <p className="mt-1 text-sm text-slate-600">
-        IMO <span className="font-mono">{vessel.imo}</span> · {vessel.brand} · {vessel.parent_company} ·{' '}
-        {vessel.public_status === 'PUBLIC' ? 'Files with the SEC' : 'Private: no public financial filings expected'}
-      </p>
-
+    <div>
+      <PageHeader
+        back={{ href: '/fleet', label: 'Fleet' }}
+        photo={photoForImo(vessel.imo)}
+        eyebrow={
+          <>
+            IMO <span className="font-mono tracking-normal">{vessel.imo}</span>
+          </>
+        }
+        title={
+          <span className="flex flex-wrap items-center gap-x-4 gap-y-2">
+            {vessel.name}
+            <PublicBadge status={vessel.public_status} ticker={vessel.ticker} />
+          </span>
+        }
+        description={
+          <>
+            {vessel.brand} · {vessel.parent_company} ·{' '}
+            {vessel.public_status === 'PUBLIC' ? 'Files with the SEC' : 'Private: no public financial filings expected'}
+          </>
+        }
+      />
+      <div className="mx-auto max-w-7xl px-4 py-8">
       <div className="mt-6 grid gap-6 lg:grid-cols-[260px_1fr]">
         {/* Ship facts */}
-        <aside className="h-fit rounded-lg border border-slate-200 bg-white p-4 text-sm">
-          <h2 className="mb-3 text-xs font-semibold uppercase tracking-wide text-slate-500">Ship facts</h2>
+        <Panel as="aside" className="h-fit p-5 text-sm lg:sticky lg:top-24">
+          <SectionLabel icon={<Ruler className="h-3.5 w-3.5" aria-hidden />} className="mb-4">Ship facts</SectionLabel>
           <dl className="space-y-2">
             <Fact k="Year built" v={`${vessel.year_built} (age ${vessel.age_2026} in 2026)`} />
             <Fact k="Gross tonnage" v={vessel.gross_tonnage !== null ? fmtNum(vessel.gross_tonnage, 0) : null} />
@@ -72,12 +85,12 @@ async function VesselDetail({ params }: { params: PageProps<'/vessel/[imo]'>['pa
             <Fact k="Draft" v={vessel.draft_m !== null ? `${vessel.draft_m} m` : null} />
             <Fact k="Miami" v={vessel.miami_connection} />
           </dl>
-        </aside>
+        </Panel>
 
         <div className="space-y-6">
           {/* Four valuation cards */}
           <section>
-            <h2 className="mb-3 text-xs font-semibold uppercase tracking-wide text-slate-500">Four labelled values</h2>
+            <SectionLabel icon={<Scale className="h-3.5 w-3.5" aria-hidden />} className="mb-3">Four labelled values</SectionLabel>
             <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
               <ScrapCard
                 estLdt={vessel.EST_ldt_tonnes}
@@ -117,7 +130,7 @@ async function VesselDetail({ params }: { params: PageProps<'/vessel/[imo]'>['pa
                 ) : (
                   <ul className="mt-2 space-y-2 text-sm">
                     {events.map((e) => (
-                      <li key={e.id}>
+                      <li key={e.id} className="border-l-2 border-line pl-2.5">
                         <span className="font-medium">{e.event_type}</span> · {e.event_date ?? 'date n/a'}
                         <div>
                           <PriceCell price={e.price_musd} status={e.price_status} />
@@ -143,12 +156,12 @@ async function VesselDetail({ params }: { params: PageProps<'/vessel/[imo]'>['pa
           </section>
 
           {/* Events and evidence */}
-          <section className="rounded-lg border border-slate-200 bg-white p-4">
-            <h2 className="mb-3 text-xs font-semibold uppercase tracking-wide text-slate-500">Events and sources</h2>
+          <Panel as="section" className="p-5">
+            <SectionLabel icon={<ExternalLink className="h-3.5 w-3.5" aria-hidden />} className="mb-4">Events and sources</SectionLabel>
             {events.length === 0 ? (
-              <p className="text-sm text-slate-500">
+              <p className="text-sm text-muted">
                 No events yet. Events that name this ship without an IMO sit in the{' '}
-                <Link href="/events" className="text-blue-700 hover:underline">
+                <Link href="/events" className="text-harbor hover:underline">
                   Needs IMO list
                 </Link>
                 .
@@ -160,20 +173,21 @@ async function VesselDetail({ params }: { params: PageProps<'/vessel/[imo]'>['pa
                 ))}
               </div>
             )}
-          </section>
+          </Panel>
 
           {/* Advisor memo panel (placeholder until the Advisor workstream lands) */}
-          <section id="memo" className="rounded-lg border border-dashed border-slate-300 bg-white p-4">
-            <h2 className="text-xs font-semibold uppercase tracking-wide text-slate-500">Decision memo</h2>
-            <p className="mt-2 text-sm text-slate-500">
+          <section id="memo" className="rounded-xl border border-dashed border-brass/50 bg-white/60 p-5">
+            <SectionLabel icon={<FileText className="h-3.5 w-3.5 text-brass" aria-hidden />}>Decision memo</SectionLabel>
+            <p className="mt-2 text-sm text-muted">
               A plain-language memo built from the four values above. Sign in and generate it on the{' '}
-              <Link href={`/advisor?imo=${vessel.imo}`} className="text-blue-700 hover:underline">
+              <Link href={`/advisor?imo=${vessel.imo}`} className="text-harbor hover:underline">
                 Advisor
               </Link>
               .
             </p>
           </section>
         </div>
+      </div>
       </div>
     </div>
   );
@@ -182,26 +196,29 @@ async function VesselDetail({ params }: { params: PageProps<'/vessel/[imo]'>['pa
 function EventRow({ e }: { e: VesselEvent }) {
   const excluded = EXCLUDED_FROM_PRICE_COMPARISON.includes(e.event_type);
   return (
-    <div className="rounded border border-slate-200 p-3 text-sm">
+    <div className="rounded-lg border border-line bg-paper/60 p-4 text-sm">
       <div className="flex flex-wrap items-center gap-2">
         <span className="font-semibold">{e.event_type}</span>
-        <span className="text-slate-500">{e.event_date ?? 'date n/a'}</span>
-        <span className="rounded bg-slate-100 px-1.5 py-0.5 text-xs">{e.status}</span>
+        <span className="text-muted">{e.event_date ?? 'date n/a'}</span>
+        <span className="rounded-md bg-harbor-tint px-1.5 py-0.5 text-xs font-medium text-harbor">{e.status}</span>
         <PriceCell price={e.price_musd} status={e.price_status} />
       </div>
-      <p className="mt-1 text-slate-600">
+      <p className="mt-1.5 text-ink/80">
         Counterparty: <OrBlank value={e.counterparty} blank="undisclosed" />
       </p>
       {e.note && (
-        <p className={`mt-1 text-xs ${excluded ? 'rounded bg-amber-50 p-2 text-amber-900' : 'text-slate-500'}`}>
-          {excluded && <strong>Excluded from price comparisons. </strong>}
-          {e.note}
+        <p className={`mt-1 text-xs ${excluded ? 'flex gap-1.5 rounded-md bg-amber-50 p-2 text-amber-900' : 'text-muted'}`}>
+          {excluded && <Info className="mt-px h-3.5 w-3.5 shrink-0" aria-hidden />}
+          <span>
+            {excluded && <strong>Excluded from price comparisons. </strong>}
+            {e.note}
+          </span>
         </p>
       )}
-      <p className="mt-1 text-xs text-slate-500">
+      <p className="mt-2 text-xs text-muted">
         Source:{' '}
         {e.source_url ? (
-          <a href={e.source_url} target="_blank" rel="noreferrer" className="text-blue-700 hover:underline">
+          <a href={e.source_url} target="_blank" rel="noreferrer" className="text-harbor hover:underline">
             {e.source ?? e.source_url}
           </a>
         ) : (
@@ -215,9 +232,9 @@ function EventRow({ e }: { e: VesselEvent }) {
 
 function Fact({ k, v }: { k: string; v: string | null }) {
   return (
-    <div className="flex justify-between gap-3">
-      <dt className="text-slate-500">{k}</dt>
-      <dd className="text-right">
+    <div className="flex justify-between gap-3 border-b border-line/70 pb-2 last:border-0 last:pb-0">
+      <dt className="text-muted">{k}</dt>
+      <dd className="text-right font-medium text-ink">
         <OrBlank value={v} />
       </dd>
     </div>
@@ -226,20 +243,20 @@ function Fact({ k, v }: { k: string; v: string | null }) {
 
 function Card({ title, labels, children }: { title: string; labels: React.ReactNode; children: React.ReactNode }) {
   return (
-    <div className="flex flex-col rounded-lg border border-slate-200 bg-white p-4">
+    <Panel className="flex flex-col p-5">
       <div className="flex items-start justify-between gap-2">
-        <h3 className="text-sm font-semibold text-slate-700">{title}</h3>
+        <h3 className="text-sm font-semibold text-ink">{title}</h3>
         <div className="flex flex-wrap justify-end gap-1">{labels}</div>
       </div>
       {children}
-    </div>
+    </Panel>
   );
 }
 
 function Big({ children, muted }: { children: React.ReactNode; muted?: boolean }) {
-  return <p className={`mt-3 font-bold tabular-nums ${muted ? 'text-base text-slate-400' : 'text-3xl'}`}>{children}</p>;
+  return <p className={`mt-3 tabular-nums ${muted ? 'text-base font-semibold text-muted/70' : 'font-display text-4xl text-ink'}`}>{children}</p>;
 }
 
 function Note({ children }: { children: React.ReactNode }) {
-  return <p className="mt-2 text-xs text-slate-500">{children}</p>;
+  return <p className="mt-2 text-xs leading-relaxed text-muted">{children}</p>;
 }

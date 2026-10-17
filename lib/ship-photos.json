@@ -1,0 +1,102 @@
+{
+  "hero": {
+    "file": "/images/ships/hero.jpg",
+    "title": "Carnival Celebration (ship, 2022) Departs Miami (February 2026).jpg",
+    "author": "Jack Adamenko",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carnival_Celebration_(ship,_2022)_Departs_Miami_(February_2026).jpg",
+    "width": 2000,
+    "height": 1125
+  },
+  "port-miami": {
+    "file": "/images/ships/port-miami.jpg",
+    "title": "Port of Miami 20071208.jpg",
+    "author": "Marc Averette",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Port_of_Miami_20071208.jpg",
+    "width": 2000,
+    "height": 564
+  },
+  "9837456": {
+    "file": "/images/ships/9837456.jpg",
+    "title": "Carnival Celebration in Funchal (cropped).jpg",
+    "author": "Ianbeyer",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carnival_Celebration_in_Funchal_(cropped).jpg",
+    "width": 2000,
+    "height": 1125
+  },
+  "9128532": {
+    "file": "/images/ships/9128532.jpg",
+    "title": "Huge cruise ship \"Norwegian Sky\" @ Port of Miami - panoramio (cropped).jpg",
+    "author": "David Balmer",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Huge_cruise_ship_%22Norwegian_Sky%22_@_Port_of_Miami_-_panoramio_(cropped).jpg",
+    "width": 2000,
+    "height": 1125
+  },
+  "9378448": {
+    "file": "/images/ships/9378448.jpg",
+    "title": "Eurodam (ship, 2008) 001.jpg",
+    "author": "Frans Berkelaar",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Eurodam_(ship,_2008)_001.jpg",
+    "width": 2000,
+    "height": 1125
+  },
+  "9198355": {
+    "file": "/images/ships/9198355.jpg",
+    "title": "Carnival Conquest (ship, 2002) docked in Celebration Key (February 2026).jpg",
+    "author": "Jack Adamenko",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carnival_Conquest_(ship,_2002)_docked_in_Celebration_Key_(February_2026).jpg",
+    "width": 2000,
+    "height": 1125
+  },
+  "9838345": {
+    "file": "/images/ships/9838345.jpg",
+    "title": "Wonder of the Seas in Málaga Port 01 (cropped).jpg",
+    "author": "Daniel Capilla",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Wonder_of_the_Seas_in_M%C3%A1laga_Port_01_(cropped).jpg",
+    "width": 2000,
+    "height": 1125
+  },
+  "9744001": {
+    "file": "/images/ships/9744001.jpg",
+    "title": "Symphony of the Seas Nassau.jpg",
+    "author": "Yoeth Gallopers",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Symphony_of_the_Seas_Nassau.jpg",
+    "width": 2000,
+    "height": 1500
+  },
+  "9804801": {
+    "file": "/images/ships/9804801.jpg",
+    "title": "Scarlet Lady in Liverpool in February 2020.jpg",
+    "author": "The Silver Novice",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Scarlet_Lady_in_Liverpool_in_February_2020.jpg",
+    "width": 2000,
+    "height": 1333
+  },
+  "9803613": {
+    "file": "/images/ships/9803613.jpg",
+    "title": "MSC Grandiosa leaving Kiel XVI.jpg",
+    "author": "HenSti",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:MSC_Grandiosa_leaving_Kiel_XVI.jpg",
+    "width": 2000,
+    "height": 1500
+  }
+}

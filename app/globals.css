@@ -1,10 +1,35 @@
 @import "tailwindcss";
 
+/* SHIPVANA design tokens. Use these names (bg-abyss, text-brass, border-line…) instead of raw palette colours
+   so every page stays consistent. Honesty-label colours live in components/labels.tsx. */
 @theme inline {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-instrument-serif);
+}
+
+@theme {
+  --color-abyss: #07121e; /* header, footer, page bands */
+  --color-navy: #0f2238;
+  --color-harbor: #1c4f7a; /* primary actions and links */
+  --color-harbor-dark: #133a5c;
+  --color-harbor-tint: #e9f0f6;
+  --color-brass: #c8963e; /* accent: eyebrows, highlights */
+  --color-brass-light: #e7c98f;
+  --color-paper: #f7f5f0; /* page background */
+  --color-line: #e4ded2; /* card borders */
+  --color-ink: #101b28; /* body text */
+  --color-muted: #5f6b78;
 }
 
 body {
   font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Fine nautical-chart grid used behind page bands. */
+.chart-grid {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.05) 1px, transparent 1px);
+  background-size: 48px 48px;
 }

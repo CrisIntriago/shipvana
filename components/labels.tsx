@@ -13,7 +13,7 @@ const styles: Record<LabelKind, string> = {
 
 export function Label({ kind, children }: { kind: LabelKind; children?: React.ReactNode }) {
   return (
-    <span className={`inline-flex items-center rounded px-1.5 py-0.5 text-[11px] font-medium ring-1 ring-inset ${styles[kind]}`}>
+    <span className={`inline-flex items-center whitespace-nowrap rounded-md px-1.5 py-0.5 text-[11px] font-medium ring-1 ring-inset ${styles[kind]}`}>
       {children ?? kind}
     </span>
   );
@@ -30,19 +30,19 @@ export function fmtMusd(n: number, opts: { estimate?: boolean; digits?: number }
 
 /** Renders a value or an explicit "not available" text. Never shows 0 for a blank. */
 export function OrBlank({ value, blank = 'Not available' }: { value: React.ReactNode | null | undefined; blank?: string }) {
-  if (value === null || value === undefined || value === '') return <span className="text-slate-400">{blank}</span>;
+  if (value === null || value === undefined || value === '') return <span className="text-muted/70">{blank}</span>;
   return <>{value}</>;
 }
 
 export function PublicBadge({ status, ticker }: { status: 'PUBLIC' | 'PRIVATE'; ticker: string | null }) {
   if (status === 'PUBLIC')
     return (
-      <span className="inline-flex items-center gap-1 rounded bg-blue-600 px-2 py-0.5 text-xs font-semibold text-white" title="Files with the SEC">
+      <span className="inline-flex items-center gap-1 whitespace-nowrap rounded-md bg-harbor px-2 py-0.5 text-xs font-semibold text-white ring-1 ring-inset ring-white/15" title="Files with the SEC">
         PUBLIC{ticker ? ` · ${ticker}` : ''}
       </span>
     );
   return (
-    <span className="inline-flex items-center rounded bg-slate-700 px-2 py-0.5 text-xs font-semibold text-white" title="No public financial filings expected">
+    <span className="inline-flex items-center whitespace-nowrap rounded-md bg-stone-600 px-2 py-0.5 text-xs font-semibold text-white ring-1 ring-inset ring-white/15" title="No public financial filings expected">
       PRIVATE
     </span>
   );
@@ -55,7 +55,7 @@ export const EXCLUDED_FROM_PRICE_COMPARISON = ['SALE_AND_LEASEBACK', 'SALE_THEN_
 
 export function PriceCell({ price, status }: { price: number | null; status: string | null }) {
   if (price === null || (status ?? '').toUpperCase().startsWith('UNDISCLOSED'))
-    return <span className="font-medium text-slate-500">Price undisclosed</span>;
+    return <span className="font-medium text-muted">Price undisclosed</span>;
   return (
     <span className="inline-flex items-center gap-1.5">
       <span className="font-semibold tabular-nums">{fmtMusd(price)}</span>
