@@ -101,7 +101,7 @@ export default function Home() {
             <h1 className="mt-5 font-display text-5xl leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl">
               What is a used cruise ship <em className="text-brass-light">worth?</em>
             </h1>
-            <p className="mt-5 max-w-xl text-lg text-white/75">
+            <p className="mt-5 max-w-xl text-lg text-white/85 [text-shadow:0_1px_3px_rgb(0_0_0/0.5)]">
               Look it up by IMO. SHIPVANA puts each ship&apos;s facts and evidence side by side. Every number says where it
               came from, and if a price was never published, we say so.
             </p>
@@ -123,10 +123,12 @@ export default function Home() {
                 Search
               </button>
             </form>
-            <p className="mt-3 text-xs text-white/50">{DECISION_SUPPORT}</p>
+            <p className="mt-3 text-xs text-white/70 [text-shadow:0_1px_2px_rgb(0_0_0/0.6)]">{DECISION_SUPPORT}</p>
           </div>
           <div>
-            <p className="mb-2 text-xs font-medium uppercase tracking-[0.16em] text-white/50">Sample lookup</p>
+            <p className="mb-3 inline-flex items-center gap-2 rounded-md bg-abyss/80 px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-white shadow-lg backdrop-blur-sm">
+              <span className="h-1.5 w-1.5 rounded-full bg-brass" aria-hidden /> Sample lookup
+            </p>
             <SampleLookup />
           </div>
         </div>
