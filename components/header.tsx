@@ -7,14 +7,14 @@ import { USERS } from '@/lib/server/store';
 import { switchUser } from '@/app/actions/session';
 import { NavLinks } from './nav-links';
 import { UserSelect } from './user-select';
+import { Logo } from './logo';
 
 export function Header() {
   return (
     <header className="sticky top-0 z-30 border-b border-white/10 bg-abyss/95 text-white backdrop-blur">
       <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-x-6 gap-y-2 px-4 py-2.5">
         <Link href="/" className="flex items-center gap-2.5">
-          <Logo />
-          <span className="font-display text-2xl leading-none tracking-wide">SHIPVANA</span>
+          <Logo tone="dark" />
         </Link>
         <div className="order-last w-full md:order-none md:w-auto">
           <Suspense fallback={<div className="h-8" />}>
@@ -38,18 +38,6 @@ export function Header() {
         </Suspense>
       </div>
     </header>
-  );
-}
-
-function Logo() {
-  // A bow wave over a waterline: SHIPVANA's mark.
-  return (
-    <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden className="text-brass">
-      <circle cx="16" cy="16" r="15" fill="none" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M7 18h18l-3 5H10z" fill="currentColor" />
-      <path d="M12 18v-6h7l2 6" fill="none" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M6 26c2.5-1.5 4.5-1.5 7 0s4.5 1.5 7 0 4.5-1.5 6 0" fill="none" stroke="currentColor" strokeWidth="1.25" opacity=".6" />
-    </svg>
   );
 }
 

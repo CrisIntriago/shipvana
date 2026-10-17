@@ -3,27 +3,35 @@
 /* SHIPVANA design tokens. Use these names (bg-abyss, text-brass, border-line…) instead of raw palette colours
    so every page stays consistent. Honesty-label colours live in components/labels.tsx. */
 @theme inline {
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-arimo);
   --font-mono: var(--font-geist-mono);
-  --font-display: var(--font-instrument-serif);
+  --font-display: var(--font-arimo);
+  --font-logo: var(--font-montserrat);
 }
 
 @theme {
-  --color-abyss: #07121e; /* header, footer, page bands */
-  --color-navy: #0f2238;
-  --color-harbor: #1c4f7a; /* primary actions and links */
-  --color-harbor-dark: #133a5c;
-  --color-harbor-tint: #e9f0f6;
-  --color-brass: #c8963e; /* accent: eyebrows, highlights */
-  --color-brass-light: #e7c98f;
-  --color-paper: #f7f5f0; /* page background */
-  --color-line: #e4ded2; /* card borders */
-  --color-ink: #101b28; /* body text */
-  --color-muted: #5f6b78;
+  /* Palette synced with the SHIPVANA pitch deck: navy #172643 + sunset orange #EA8156 on white/cool grey. */
+  --color-abyss: #0e1a30; /* header, footer, page bands */
+  --color-navy: #172643;
+  --color-harbor: #1f3a63; /* primary actions and links */
+  --color-harbor-dark: #172643;
+  --color-harbor-tint: #eaeef5;
+  --color-brass: #ea8156; /* accent (deck orange): eyebrows, highlights */
+  --color-brass-light: #f4b08f;
+  --color-paper: #f3f5f8; /* page background (deck card grey) */
+  --color-line: #e1e5ec; /* card borders */
+  --color-ink: #172643; /* body text (deck navy) */
+  --color-muted: #5d6a80;
 }
 
 body {
-  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-arimo), Arial, Helvetica, sans-serif;
+}
+
+/* Deck headings and big numbers are bold Arial, set tight. */
+.font-display {
+  font-weight: 700;
+  letter-spacing: -0.015em;
 }
 
 /* Fine nautical-chart grid used behind page bands. */

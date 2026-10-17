@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
+import { Arimo, Geist_Mono, Montserrat } from "next/font/google";
 import { Header } from "@/components/header";
+import { Logo } from "@/components/logo";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// Pitch-deck typography: Arial everywhere (Arimo is its metric-compatible open clone),
+// plus a heavy italic geometric face for the ShipVana wordmark.
+const arimo = Arimo({
+  variable: "--font-arimo",
   subsets: ["latin"],
+  style: ["normal", "italic"],
 });
 
 const geistMono = Geist_Mono({
@@ -14,32 +18,32 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const instrumentSerif = Instrument_Serif({
-  variable: "--font-instrument-serif",
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
   subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
+  weight: "800",
+  style: "italic",
 });
 
 export const metadata: Metadata = {
-  title: "SHIPVANA · Cruise ship valuation",
+  title: "SHIPVANA · Second lives for aging cruise ships",
   description:
-    "Transparent valuation and tracking for cruise ships that call at PortMiami. Every number labelled: sourced, estimate or proxy.",
+    "An AI platform that turns aging cruise ships into financed second-life deals, for buyers anywhere in the world.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} h-full antialiased`}
+      className={`${arimo.variable} ${geistMono.variable} ${montserrat.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-paper text-ink">
         <Header />
         <main className="flex-1">{children}</main>
         <footer className="bg-abyss text-white/60">
           <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-8 text-xs sm:flex-row sm:items-center sm:justify-between">
-            <p>
-              <span className="font-display text-base tracking-wide text-white">SHIPVANA</span>
+            <p className="flex flex-wrap items-center">
+              <Logo tone="dark" size="sm" />
               <span className="mx-2 text-white/30">·</span>
               Decision support, not financial advice. Market inputs are user-entered or from dated scrap prices.
             </p>

@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, Anchor, BadgeCheck, Coins, Landmark, Recycle, Search } from 'lucide-react';
+import { ArrowRight, Anchor, BadgeCheck, Coins, Globe, Landmark, Recycle, Search, Ship, Sparkles } from 'lucide-react';
 import { DECISION_SUPPORT, Label, PublicBadge, fmtMusd, type LabelKind } from '@/components/labels';
 import { Eyebrow, Panel, PhotoCredit, SectionTitle, ShipImage, buttonClass } from '@/components/ui';
 import { HERO_PHOTO, PORT_PHOTO, photoForImo } from '@/lib/ship-photos';
@@ -30,6 +30,31 @@ const FEATURED = [
   { imo: '9744001', name: 'Symphony of the Seas', brand: 'Royal Caribbean International' },
   { imo: '9804801', name: 'Scarlet Lady', brand: 'Virgin Voyages' },
   { imo: '9803613', name: 'MSC Grandiosa', brand: 'MSC Cruises' },
+];
+
+const EXIT_PATHS = ['Keep & refit', 'Sell', 'Charter / lease back', 'New use (residential, hotel)', 'Recycle'];
+
+const OFFER = [
+  {
+    title: 'Every exit path, side by side',
+    icon: Sparkles,
+    body: 'For each aging ship, SHIPVANA compares keeping and refitting it, selling it, chartering or leasing it back, giving it a new use, or recycling it.',
+  },
+  {
+    title: 'Global buyer reach',
+    icon: Globe,
+    body: 'We find the non-obvious buyer a broker network misses — operators in India and Japan, residential ships, hotels.',
+  },
+  {
+    title: 'Financing built in',
+    icon: Landmark,
+    body: 'We pair the buyer with partner lenders and investors, so the deal is bankable before it is signed.',
+  },
+  {
+    title: 'Asset-light',
+    icon: Ship,
+    body: 'SHIPVANA never buys ships. We originate the deal; partners provide the capital.',
+  },
 ];
 
 const VALUES = [
@@ -68,7 +93,7 @@ const LEGEND: { kind: LabelKind; text: string }[] = [
 ];
 
 const LOOP = [
-  { step: 'Search a ship by IMO', href: '/fleet', cta: 'Fleet' },
+  { step: 'Search a ship by IMO', href: '/fleet', cta: 'Inventory' },
   { step: 'Read the four labelled values', href: '/vessel/9128532', cta: 'Norwegian Sky' },
   { step: 'Paste a sale sentence and review the extracted event', href: '/events', cta: 'Event Feed' },
   { step: 'Save it and watch your alert fire', href: '/alerts', cta: 'My alerts' },
@@ -102,8 +127,8 @@ export default function Home() {
               What is a used cruise ship <em className="text-brass-light">worth?</em>
             </h1>
             <p className="mt-5 max-w-xl text-lg text-white/85 [text-shadow:0_1px_3px_rgb(0_0_0/0.5)]">
-              Look it up by IMO. SHIPVANA puts each ship&apos;s facts and evidence side by side. Every number says where it
-              came from, and if a price was never published, we say so.
+              An AI platform that turns aging cruise ships into financed second-life deals — for buyers anywhere in the
+              world.
             </p>
             <form action="/fleet" className="mt-8 flex max-w-xl gap-2 rounded-xl border border-white/15 bg-white/10 p-1.5 backdrop-blur-md">
               <label htmlFor="hero-q" className="sr-only">
@@ -136,6 +161,37 @@ export default function Home() {
       </section>
 
       <div className="mx-auto max-w-7xl space-y-20 px-4 py-16">
+        {/* Offer */}
+        <section>
+          <SectionTitle
+            eyebrow="What we do"
+            title="A second life instead of the scrapyard."
+            description="Second-life buyers struggle to get financing, so deals collapse and sellers settle for scrap. SHIPVANA runs each ship's exit scenarios and delivers a financed second-life deal to buyers worldwide."
+          />
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {OFFER.map(({ title, icon: Icon, body }) => (
+              <Panel as="article" key={title} className="p-5 transition hover:-translate-y-0.5 hover:border-harbor/30 hover:shadow-md">
+                <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-brass/15 text-brass">
+                  <Icon className="h-5 w-5" aria-hidden />
+                </span>
+                <h3 className="mt-4 font-display text-2xl text-ink">{title}</h3>
+                <p className="mt-1.5 text-sm leading-relaxed text-muted">{body}</p>
+              </Panel>
+            ))}
+          </div>
+          <div className="mt-4 flex flex-wrap items-center gap-2">
+            {EXIT_PATHS.map((p) => (
+              <Link
+                key={p}
+                href="/scenarios"
+                className="rounded-full border border-line bg-white px-3 py-1 text-sm text-ink/80 transition hover:border-brass hover:text-brass"
+              >
+                {p}
+              </Link>
+            ))}
+          </div>
+        </section>
+
         {/* Four values */}
         <section>
           <SectionTitle
@@ -166,9 +222,9 @@ export default function Home() {
         {/* Featured ships */}
         <section>
           <div className="flex flex-wrap items-end justify-between gap-4">
-            <SectionTitle eyebrow="The fleet" title="Ships that call at Miami" />
+            <SectionTitle eyebrow="Inventory" title="Ships that call at Miami" />
             <Link href="/fleet" className={buttonClass('secondary')}>
-              Browse the fleet <ArrowRight className="h-4 w-4" aria-hidden />
+              Browse the inventory <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
           </div>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

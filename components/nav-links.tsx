@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation';
 import { Bell, Calculator, FileText, Newspaper, Ship } from 'lucide-react';
 
 const NAV = [
-  { href: '/fleet', label: 'Fleet', icon: Ship },
+  { href: '/fleet', label: 'Inventory', icon: Ship },
   { href: '/events', label: 'Event Feed', icon: Newspaper },
   { href: '/advisor', label: 'Advisor', icon: FileText },
   { href: '/scenarios', label: 'Scenarios', icon: Calculator },
