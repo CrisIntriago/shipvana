@@ -23,12 +23,12 @@ export function PageHeader({
   return (
     <section className="relative isolate overflow-hidden bg-abyss text-white">
       {photo && (
-        <Image src={photo.file} alt="" fill sizes="100vw" className="-z-20 object-cover opacity-30" />
+        <Image src={photo.file} alt="" fill sizes="100vw" className={`-z-20 object-cover ${photo === PORT_PHOTO ? 'opacity-30' : 'opacity-80'}`} />
       )}
       {/* Black scrim keeps text readable over any photo. */}
       {photo && <div className="absolute inset-0 -z-10 bg-black/35" />}
       <div className="chart-grid absolute inset-0 -z-10 bg-gradient-to-r from-abyss via-abyss/85 to-abyss/30" />
-      <div className="mx-auto max-w-7xl px-4 pb-10 pt-8 sm:pb-12">
+      <div className={`mx-auto max-w-7xl px-4 pt-8 ${photo && photo !== PORT_PHOTO ? 'pb-16 sm:pb-24' : 'pb-10 sm:pb-12'}`}>
         {back && (
           <Link href={back.href} className="text-sm text-white/60 transition hover:text-white">
             ← {back.label}
